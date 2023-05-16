@@ -1,5 +1,7 @@
+import time
+
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QApplication
+from PyQt5.QtWidgets import *
 import sys
 import main
 import new_items
@@ -29,6 +31,7 @@ class Main_UI(QtWidgets.QMainWindow, main.Ui_MainWindow):
 
     def open_window_new_items(self):
         self.window = QtWidgets.QMainWindow()
+        layout = QtWidgets.QVBoxLayout()
         self.ui = new_items.New_ItemsWindow()
         self.ui.setupUi(self.window)
         self.window.show()
@@ -43,6 +46,13 @@ class Main_UI(QtWidgets.QMainWindow, main.Ui_MainWindow):
         self.settings_button.clicked.connect(self.open_window_settings_app)
         self.about_button.clicked.connect(self.open_window_about_app)
         self.exit_button.clicked.connect(self.app_exit)
+        self.refresh_button.clicked.connect(self.refresh_data)
+
+    def refresh_data(self):
+        for i in range(101):
+            time.sleep(0.05)
+            self.progressBar.setValue(i)
+        self.progressBar.setValue(0)
 
     def app_exit(self):
         print("Exiting the application")
