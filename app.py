@@ -3,28 +3,50 @@ from PyQt5.QtWidgets import QApplication
 import sys
 import main
 import new_items
+import about
+import settings
 from database import db_insert
 import datetime
 
+
 class Main_UI(QtWidgets.QMainWindow, main.Ui_MainWindow):
+    def open_window_settings_app(self):
+        self.window = QtWidgets.QMainWindow()
+        self.ui = settings.Ui_MainWindow()
+        self.ui.setupUi(self.window)
+        self.window.show()
+        self.ui.back_button.clicked.connect(self.back_screen)
+
+    def open_window_about_app(self):
+        self.window = QtWidgets.QMainWindow()
+        self.ui = about.Ui_MainWindow()
+        self.ui.setupUi(self.window)
+        self.window.show()
+        self.ui.okay_button.clicked.connect(self.app_about_okay)
+
+    def app_about_okay(self):
+        self.window.close()
+
     def open_window_new_items(self):
         self.window = QtWidgets.QMainWindow()
         self.ui = new_items.New_ItemsWindow()
         self.ui.setupUi(self.window)
         self.window.show()
         self.ui.save_button.clicked.connect(self.save_new_items)
-        self.ui.back_button.clicked.connect(self.back_home_screen)
+        self.ui.back_button.clicked.connect(self.back_screen)
         self.ui.reset_button.clicked.connect(self.reset_form)
 
     def __init__(self, parent=None):
         super(Main_UI, self).__init__(parent)
         self.setupUi(self)
-        self.pushButton.clicked.connect(self.open_window_new_items)
-        self.pushButton_3.clicked.connect(self.clicked)
+        self.new_items_button.clicked.connect(self.open_window_new_items)
+        self.settings_button.clicked.connect(self.open_window_settings_app)
+        self.about_button.clicked.connect(self.open_window_about_app)
+        self.exit_button.clicked.connect(self.app_exit)
 
-    def clicked(self):
-        print("Settings button pressed.")
-        print(self.textEdit.toPlainText())
+    def app_exit(self):
+        print("Exiting the application")
+        sys.exit()
 
     def save_new_items(self):
         print("capturing information about new items for registration....")
@@ -38,7 +60,7 @@ class Main_UI(QtWidgets.QMainWindow, main.Ui_MainWindow):
         total_price = quantity_int * price_per_unit_int
         data_submitted_by = self.ui.data_submitted_by.toPlainText()
         date = datetime.datetime.now()
-        #date = self.ui.dateTimeEdit.textFromDateTime()
+        # date = self.ui.dateTimeEdit.textFromDateTime()
         self.ui.total_price.setPlainText(str(total_price))
         print("Product Name:", product_name)
         print("Client Name:", client_name)
@@ -47,9 +69,10 @@ class Main_UI(QtWidgets.QMainWindow, main.Ui_MainWindow):
         print("Total price:", total_price)
         print("Date:", date)
         print("Data submitted by:", data_submitted_by)
-        db_insert.register_new_item(product_name, client_name, quantity, price_per_unit, total_price, date, data_submitted_by)
+        db_insert.register_new_item(product_name, client_name, quantity, price_per_unit, total_price, date,
+                                    data_submitted_by)
 
-    def back_home_screen(self):
+    def back_screen(self):
         self.window.close()
 
     def reset_form(self):
@@ -61,6 +84,7 @@ class Main_UI(QtWidgets.QMainWindow, main.Ui_MainWindow):
 
     def text_changed(self):
         print("Text change detected")
+
 
 def main():
     app = QApplication(sys.argv)

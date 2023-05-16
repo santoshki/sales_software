@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>707</height>
+    <height>764</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,46 +20,67 @@
       <x>10</x>
       <y>10</y>
       <width>191</width>
-      <height>651</height>
+      <height>711</height>
      </rect>
     </property>
     <property name="title">
      <string>Sales Software V 1.0</string>
     </property>
-    <widget class="QPushButton" name="pushButton">
+    <widget class="QPushButton" name="new_items_button">
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>220</y>
+       <y>290</y>
        <width>181</width>
        <height>61</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>11</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
      </property>
      <property name="text">
       <string>New Items</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_2">
+    <widget class="QPushButton" name="expenses_button">
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>300</y>
+       <y>370</y>
        <width>181</width>
        <height>61</height>
       </rect>
      </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
      <property name="text">
-      <string>Expenses</string>
+      <string>Sales</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_3">
+    <widget class="QPushButton" name="settings_button">
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>380</y>
+       <y>450</y>
        <width>181</width>
        <height>71</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>11</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
      </property>
      <property name="text">
       <string>Settings</string>
@@ -88,30 +109,64 @@
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_4">
+    <widget class="QPushButton" name="about_button">
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>470</y>
+       <y>540</y>
        <width>181</width>
        <height>71</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>11</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
      </property>
      <property name="text">
       <string>About</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_5">
+    <widget class="QPushButton" name="exit_button">
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>560</y>
+       <y>630</y>
        <width>181</width>
        <height>71</height>
       </rect>
      </property>
+     <property name="font">
+      <font>
+       <pointsize>11</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
      <property name="text">
       <string>Exit</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="new_items_button_2">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>210</y>
+       <width>181</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>11</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>Home</string>
      </property>
     </widget>
    </widget>
@@ -120,13 +175,36 @@
      <rect>
       <x>210</x>
       <y>10</y>
-      <width>481</width>
-      <height>651</height>
+      <width>581</width>
+      <height>711</height>
      </rect>
     </property>
     <property name="title">
      <string>Home Screen</string>
     </property>
+    <widget class="QLabel" name="label_2">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>50</y>
+       <width>511</width>
+       <height>211</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>10</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>Track all your product expenses in a single frame. Sales Software provides a holistic view of all your expenses and options to generate reports as per user needs. Stay tuned for more updates</string>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
