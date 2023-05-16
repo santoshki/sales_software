@@ -7,8 +7,9 @@ import main
 import new_items
 import about
 import settings
-from database import db_insert
+from database import db_insert, db_update
 import datetime
+from usecase import db_proc
 
 
 class Main_UI(QtWidgets.QMainWindow, main.Ui_MainWindow):
@@ -17,7 +18,20 @@ class Main_UI(QtWidgets.QMainWindow, main.Ui_MainWindow):
         self.ui = settings.Ui_MainWindow()
         self.ui.setupUi(self.window)
         self.window.show()
+        gst_percentage_value = db_proc.db_get_values()
+        self.ui.gst_percentage_value.setPlainText(str(gst_percentage_value))
         self.ui.back_button.clicked.connect(self.back_screen)
+        self.ui.save_button.clicked.connect(self.save_settings)
+        self.ui.reset_values_button.clicked.connect(self.reset_settings)
+
+    def reset_settings(self):
+        print("Resetting settings to default values...")
+        db_update.db_update_table("18")
+        self.ui.gst_percentage_value.setPlainText("18")
+
+    def save_settings(self):
+        db_update.db_update_table(self.ui.gst_percentage_value.toPlainText())
+        print("New GST% value =", self.ui.gst_percentage_value.toPlainText())
 
     def open_window_about_app(self):
         self.window = QtWidgets.QMainWindow()

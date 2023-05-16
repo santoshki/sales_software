@@ -10,10 +10,10 @@ def read_data(table_name):
         cur.execute(read_query)
         data = cur.fetchall()
         print(data)
-
+        return data
     except Exception as e:
         print("Exception occurred while trying to read existing issues from the db", e)
 
 
 if __name__ == '__main__':
-    read_data("ss_records")
+    read_data(config_parser.db_settings)

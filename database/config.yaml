@@ -6,3 +6,4 @@ database:
   db_table_names:
     users: isr_registered_users
     records: ss_records
+    settings: ss_settings

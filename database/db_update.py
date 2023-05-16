@@ -14,5 +14,18 @@ def db_delete_table(table_name):
         print("Exception occurred while dropping the table in the db", e)
 
 
+def db_update_table(gst_percentage_value):
+    try:
+        connection = sql.connect(config_parser.db_hostname)
+        connection.execute("UPDATE ss_settings SET gst_percentage_value = ?", (gst_percentage_value,))
+        print("Table values updated in db.")
+        connection.commit()
+        connection.close()
+
+    except Exception as e:
+        print("Exception occurred while updating value in db", e)
+
+
 if __name__ == '__main__':
-    db_delete_table("ss_records")
+   #db_update_table("19")
+   db_delete_table(config_parser.db_settings)
