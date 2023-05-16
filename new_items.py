@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'new_items_ui.ui'
+# Form implementation generated from reading ui file 'C:\Users\santosh.a.d.kulkarni\PycharmProjects\sales_software_alpha_v1\designs\new_items_ui.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.9
 #
@@ -14,11 +14,11 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class New_ItemsWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(859, 689)
+        MainWindow.resize(859, 759)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.groupBox = QtWidgets.QGroupBox(self.centralwidget)
-        self.groupBox.setGeometry(QtCore.QRect(40, 10, 781, 621))
+        self.groupBox.setGeometry(QtCore.QRect(40, 10, 781, 681))
         font = QtGui.QFont()
         font.setPointSize(12)
         font.setBold(True)
@@ -86,16 +86,16 @@ class New_ItemsWindow(object):
         self.label_8.setFont(font)
         self.label_8.setObjectName("label_8")
         self.back_button = QtWidgets.QPushButton(self.groupBox)
-        self.back_button.setGeometry(QtCore.QRect(50, 560, 111, 41))
+        self.back_button.setGeometry(QtCore.QRect(50, 620, 111, 41))
         self.back_button.setObjectName("back_button")
         self.reset_button = QtWidgets.QPushButton(self.groupBox)
-        self.reset_button.setGeometry(QtCore.QRect(290, 560, 121, 41))
+        self.reset_button.setGeometry(QtCore.QRect(290, 620, 121, 41))
         self.reset_button.setObjectName("reset_button")
         self.save_button = QtWidgets.QPushButton(self.groupBox)
-        self.save_button.setGeometry(QtCore.QRect(550, 560, 131, 41))
+        self.save_button.setGeometry(QtCore.QRect(560, 620, 131, 41))
         self.save_button.setObjectName("save_button")
         self.label_9 = QtWidgets.QLabel(self.groupBox)
-        self.label_9.setGeometry(QtCore.QRect(10, 430, 141, 41))
+        self.label_9.setGeometry(QtCore.QRect(10, 520, 141, 41))
         font = QtGui.QFont()
         font.setPointSize(12)
         font.setBold(True)
@@ -103,7 +103,7 @@ class New_ItemsWindow(object):
         self.label_9.setFont(font)
         self.label_9.setObjectName("label_9")
         self.dateEdit = QtWidgets.QDateEdit(self.groupBox)
-        self.dateEdit.setGeometry(QtCore.QRect(430, 430, 201, 41))
+        self.dateEdit.setGeometry(QtCore.QRect(430, 520, 201, 41))
         self.dateEdit.setObjectName("dateEdit")
         self.quantity = QtWidgets.QPlainTextEdit(self.groupBox)
         self.quantity.setGeometry(QtCore.QRect(430, 240, 251, 41))
@@ -121,6 +121,18 @@ class New_ItemsWindow(object):
         self.product_name = QtWidgets.QPlainTextEdit(self.groupBox)
         self.product_name.setGeometry(QtCore.QRect(430, 120, 291, 41))
         self.product_name.setObjectName("product_name")
+        self.label_10 = QtWidgets.QLabel(self.groupBox)
+        self.label_10.setGeometry(QtCore.QRect(10, 440, 361, 41))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_10.setFont(font)
+        self.label_10.setObjectName("label_10")
+        self.data_submitted_by = QtWidgets.QPlainTextEdit(self.groupBox)
+        self.data_submitted_by.setGeometry(QtCore.QRect(430, 440, 251, 41))
+        self.data_submitted_by.setReadOnly(False)
+        self.data_submitted_by.setObjectName("data_submitted_by")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 859, 18))
@@ -149,3 +161,4 @@ class New_ItemsWindow(object):
         self.reset_button.setText(_translate("MainWindow", "Reset"))
         self.save_button.setText(_translate("MainWindow", "Save"))
         self.label_9.setText(_translate("MainWindow", "Date"))
+        self.label_10.setText(_translate("MainWindow", "Data Submitted by"))

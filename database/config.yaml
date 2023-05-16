@@ -1,0 +1,8 @@
+database:
+  db_location: C:\Users\santosh.a.d.kulkarni\PycharmProjects\sales_software_alpha_v1\database\
+  db_name: ss_database.db
+  db_secret_key: 5D4C1
+  password_reset_value: test123
+  db_table_names:
+    users: isr_registered_users
+    records: ss_records

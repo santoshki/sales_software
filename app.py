@@ -3,7 +3,8 @@ from PyQt5.QtWidgets import QApplication
 import sys
 import main
 import new_items
-
+from database import db_insert
+import datetime
 
 class Main_UI(QtWidgets.QMainWindow, main.Ui_MainWindow):
     def open_window_new_items(self):
@@ -32,12 +33,17 @@ class Main_UI(QtWidgets.QMainWindow, main.Ui_MainWindow):
         quantity_int = int(quantity)
         price_per_unit_int = int(price_per_unit)
         total_price = quantity_int * price_per_unit_int
+        data_submitted_by = self.ui.data_submitted_by.toPlainText()
+        date = datetime.datetime.now()
+        #self.ui.dateEdit.setDate(date)
         self.ui.total_price.setPlainText(str(total_price))
         print("Product Name:", product_name)
         print("Client Name:", client_name)
         print("Quantity:", quantity)
         print("Price per unit:", price_per_unit)
         print("Total price:", total_price)
+        print("Data submitted by:", data_submitted_by)
+        db_insert.register_new_item(product_name, client_name, quantity, price_per_unit, total_price, date, data_submitted_by)
 
 
 def main():
