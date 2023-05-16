@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>600</height>
+    <height>707</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,20 +19,20 @@
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>121</width>
-      <height>351</height>
+      <width>191</width>
+      <height>651</height>
      </rect>
     </property>
     <property name="title">
-     <string>GroupBox</string>
+     <string>Sales Software V 1.0</string>
     </property>
     <widget class="QPushButton" name="pushButton">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>80</y>
-       <width>91</width>
-       <height>41</height>
+       <x>0</x>
+       <y>220</y>
+       <width>181</width>
+       <height>61</height>
       </rect>
      </property>
      <property name="text">
@@ -42,10 +42,10 @@
     <widget class="QPushButton" name="pushButton_2">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>140</y>
-       <width>91</width>
-       <height>41</height>
+       <x>0</x>
+       <y>300</y>
+       <width>181</width>
+       <height>61</height>
       </rect>
      </property>
      <property name="text">
@@ -55,10 +55,10 @@
     <widget class="QPushButton" name="pushButton_3">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>200</y>
-       <width>91</width>
-       <height>41</height>
+       <x>0</x>
+       <y>380</y>
+       <width>181</width>
+       <height>71</height>
       </rect>
      </property>
      <property name="text">
@@ -68,10 +68,10 @@
     <widget class="QLabel" name="label">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>20</y>
-       <width>91</width>
-       <height>41</height>
+       <x>0</x>
+       <y>100</y>
+       <width>181</width>
+       <height>91</height>
       </rect>
      </property>
      <property name="font">
@@ -88,29 +88,45 @@
       <bool>true</bool>
      </property>
     </widget>
+    <widget class="QPushButton" name="pushButton_4">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>470</y>
+       <width>181</width>
+       <height>71</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>About</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_5">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>560</y>
+       <width>181</width>
+       <height>71</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Exit</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QGroupBox" name="groupBox_2">
     <property name="geometry">
      <rect>
-      <x>140</x>
+      <x>210</x>
       <y>10</y>
-      <width>321</width>
-      <height>351</height>
+      <width>481</width>
+      <height>651</height>
      </rect>
     </property>
     <property name="title">
-     <string>GroupBox</string>
+     <string>Home Screen</string>
     </property>
-    <widget class="QTextEdit" name="textEdit">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>30</y>
-       <width>104</width>
-       <height>31</height>
-      </rect>
-     </property>
-    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

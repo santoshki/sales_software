@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'main_ui.ui'
+# Form implementation generated from reading ui file 'C:\Users\santosh.a.d.kulkarni\PycharmProjects\sales_software_alpha_v1\designs\main_ui.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.9
 #
@@ -14,23 +14,23 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(800, 600)
+        MainWindow.resize(800, 707)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.groupBox = QtWidgets.QGroupBox(self.centralwidget)
-        self.groupBox.setGeometry(QtCore.QRect(10, 10, 121, 351))
+        self.groupBox.setGeometry(QtCore.QRect(10, 10, 191, 651))
         self.groupBox.setObjectName("groupBox")
         self.pushButton = QtWidgets.QPushButton(self.groupBox)
-        self.pushButton.setGeometry(QtCore.QRect(10, 80, 91, 41))
+        self.pushButton.setGeometry(QtCore.QRect(0, 220, 181, 61))
         self.pushButton.setObjectName("pushButton")
         self.pushButton_2 = QtWidgets.QPushButton(self.groupBox)
-        self.pushButton_2.setGeometry(QtCore.QRect(10, 140, 91, 41))
+        self.pushButton_2.setGeometry(QtCore.QRect(0, 300, 181, 61))
         self.pushButton_2.setObjectName("pushButton_2")
         self.pushButton_3 = QtWidgets.QPushButton(self.groupBox)
-        self.pushButton_3.setGeometry(QtCore.QRect(10, 200, 91, 41))
+        self.pushButton_3.setGeometry(QtCore.QRect(0, 380, 181, 71))
         self.pushButton_3.setObjectName("pushButton_3")
         self.label = QtWidgets.QLabel(self.groupBox)
-        self.label.setGeometry(QtCore.QRect(10, 20, 91, 41))
+        self.label.setGeometry(QtCore.QRect(0, 100, 181, 91))
         font = QtGui.QFont()
         font.setPointSize(12)
         font.setBold(True)
@@ -38,12 +38,15 @@ class Ui_MainWindow(object):
         self.label.setFont(font)
         self.label.setWordWrap(True)
         self.label.setObjectName("label")
+        self.pushButton_4 = QtWidgets.QPushButton(self.groupBox)
+        self.pushButton_4.setGeometry(QtCore.QRect(0, 470, 181, 71))
+        self.pushButton_4.setObjectName("pushButton_4")
+        self.pushButton_5 = QtWidgets.QPushButton(self.groupBox)
+        self.pushButton_5.setGeometry(QtCore.QRect(0, 560, 181, 71))
+        self.pushButton_5.setObjectName("pushButton_5")
         self.groupBox_2 = QtWidgets.QGroupBox(self.centralwidget)
-        self.groupBox_2.setGeometry(QtCore.QRect(140, 10, 321, 351))
+        self.groupBox_2.setGeometry(QtCore.QRect(210, 10, 481, 651))
         self.groupBox_2.setObjectName("groupBox_2")
-        self.textEdit = QtWidgets.QTextEdit(self.groupBox_2)
-        self.textEdit.setGeometry(QtCore.QRect(10, 30, 104, 31))
-        self.textEdit.setObjectName("textEdit")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 18))
@@ -59,9 +62,11 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.groupBox.setTitle(_translate("MainWindow", "GroupBox"))
+        self.groupBox.setTitle(_translate("MainWindow", "Sales Software V 1.0"))
         self.pushButton.setText(_translate("MainWindow", "New Items"))
         self.pushButton_2.setText(_translate("MainWindow", "Expenses"))
         self.pushButton_3.setText(_translate("MainWindow", "Settings"))
         self.label.setText(_translate("MainWindow", "Sales Software  (version 1.0)"))
-        self.groupBox_2.setTitle(_translate("MainWindow", "GroupBox"))
+        self.pushButton_4.setText(_translate("MainWindow", "About"))
+        self.pushButton_5.setText(_translate("MainWindow", "Exit"))
+        self.groupBox_2.setTitle(_translate("MainWindow", "Home Screen"))
