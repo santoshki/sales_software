@@ -137,7 +137,7 @@
      </font>
     </property>
     <property name="text">
-     <string>Product Name</string>
+     <string>Supplier Name</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_3">
@@ -353,7 +353,7 @@
      </font>
     </property>
     <property name="text">
-     <string>Client Name</string>
+     <string>Vendor Name</string>
     </property>
    </widget>
    <widget class="QPlainTextEdit" name="quantity">

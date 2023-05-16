@@ -16,4 +16,4 @@ def read_data(table_name):
 
 
 if __name__ == '__main__':
-    read_data(config_parser.db_settings)
+    read_data(config_parser.db_records)

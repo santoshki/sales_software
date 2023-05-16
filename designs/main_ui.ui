@@ -43,7 +43,7 @@
       </font>
      </property>
      <property name="text">
-      <string>New Items</string>
+      <string>Purchases</string>
      </property>
      <property name="icon">
       <iconset>
@@ -56,7 +56,7 @@
       </size>
      </property>
     </widget>
-    <widget class="QPushButton" name="expenses_button">
+    <widget class="QPushButton" name="sales_button">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -301,7 +301,7 @@
       </font>
      </property>
      <property name="text">
-      <string>Total number of products</string>
+      <string>Total number of vendors</string>
      </property>
     </widget>
     <widget class="QPlainTextEdit" name="plainTextEdit">
@@ -391,7 +391,7 @@
       </font>
      </property>
      <property name="text">
-      <string>Total clients onboarded</string>
+      <string>Total number of products</string>
      </property>
     </widget>
     <widget class="QPlainTextEdit" name="plainTextEdit_4">

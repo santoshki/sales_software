@@ -10,9 +10,27 @@ import settings
 from database import db_insert, db_update
 import datetime
 from usecase import db_proc
+import sales
 
 
 class Main_UI(QtWidgets.QMainWindow, main.Ui_MainWindow):
+    def open_window_sales(self):
+        self.window = QtWidgets.QMainWindow()
+        self.ui = sales.Ui_MainWindow()
+        self.ui.setupUi(self.window)
+        self.window.show()
+        item_text = ['sample 1', 'sample 2']
+        self.ui.comboBox.addItems(item_text)
+        self.ui.back_button.clicked.connect(self.back_screen)
+        self.ui.reset_button.clicked.connect(self.reset_sales_form)
+
+    def reset_sales_form(self):
+        self.ui.comboBox.setCurrentIndex(0)
+        self.ui.customer_name.setPlainText(" ")
+        self.ui.quantity_spinBox.setValue(0)
+        self.ui.price_per_unit_spinBox.setValue(0)
+        self.ui.total_price.setPlainText(" ")
+
     def open_window_settings_app(self):
         self.window = QtWidgets.QMainWindow()
         self.ui = settings.Ui_MainWindow()
@@ -57,6 +75,7 @@ class Main_UI(QtWidgets.QMainWindow, main.Ui_MainWindow):
         super(Main_UI, self).__init__(parent)
         self.setupUi(self)
         self.new_items_button.clicked.connect(self.open_window_new_items)
+        self.sales_button.clicked.connect(self.open_window_sales)
         self.settings_button.clicked.connect(self.open_window_settings_app)
         self.about_button.clicked.connect(self.open_window_about_app)
         self.exit_button.clicked.connect(self.app_exit)
@@ -95,6 +114,7 @@ class Main_UI(QtWidgets.QMainWindow, main.Ui_MainWindow):
         print("Data submitted by:", data_submitted_by)
         db_insert.register_new_item(product_name, client_name, quantity, price_per_unit, total_price, date,
                                     data_submitted_by)
+        self.window.close()
 
     def back_screen(self):
         self.window.close()
