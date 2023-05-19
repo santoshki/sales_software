@@ -1,5 +1,5 @@
+from datetime import date
 import time
-
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import *
 import sys
@@ -10,19 +10,113 @@ import settings
 from database import db_insert, db_update
 import datetime
 from usecase import db_proc
-import sales
+from PyQt5.QtCore import QSize
+import purchases
+import message_display
+import getpass
+import sales_new
 
 
 class Main_UI(QtWidgets.QMainWindow, main.Ui_MainWindow):
-    def open_window_sales(self):
+    """def open_window_purchases(self):
         self.window = QtWidgets.QMainWindow()
-        self.ui = sales.Ui_MainWindow()
+        self.ui = purchases.Ui_MainWindow()
         self.ui.setupUi(self.window)
         self.window.show()
-        item_text = ['sample 1', 'sample 2']
+        today = date.today()
+        self.ui.data_submitted_by.setPlainText(str(getpass.getuser()))
+        self.ui.current_date.setPlainText(str(today))
+        self.ui.save_button.clicked.connect(self.save_purchase_details)
+        self.ui.back_button.clicked.connect(self.back_screen)
+        self.ui.reset_button.clicked.connect(self.reset_purchase_form)
+        self.ui.quantity_spinBox.textChanged.connect(self.text_changed)
+        self.ui.price_per_unit_spinBox.textChanged.connect(self.text_changed)
+
+    def text_changed(self):
+        quantity = self.ui.quantity_spinBox.value()
+        price_per_unit = self.ui.price_per_unit_spinBox.value()
+        quantity_int = int(quantity)
+        price_per_unit_int = int(price_per_unit)
+        total_price = quantity_int * price_per_unit_int
+        self.ui.total_price.setPlainText(str(total_price))
+
+    def save_purchase_details(self):
+        print("capturing information about new purchases....")
+        supplier_name = self.ui.supplier_name.toPlainText()
+        vendor_name = self.ui.vendor_name.toPlainText()
+        product_name = self.ui.product_name.toPlainText()
+        quantity = self.ui.quantity_spinBox.value()
+        price_per_unit = self.ui.price_per_unit_spinBox.value()
+        total_price = self.ui.total_price.toPlainText()
+        date = self.ui.current_date.toPlainText()
+        data_submitted_by = self.ui.data_submitted_by.toPlainText()
+
+        print("Supplier Name:", supplier_name)
+        print("Product Name:", product_name)
+        print("Vendor Name:", vendor_name)
+        print("Quantity:", quantity)
+        print("Price per unit:", price_per_unit)
+        print("Total price:", total_price)
+        print("Date:", date)
+        print("Data submitted by:", data_submitted_by)
+        data_reg = db_insert.register_purchase(supplier_name, product_name, vendor_name, quantity, price_per_unit,
+                                               total_price, date, data_submitted_by)
+        if data_reg == 1:
+            self.window.close()
+            self.window = QtWidgets.QMainWindow()
+            self.ui = message_display.Ui_Dialog()
+            self.ui.setupUi(self.window)
+            self.window.show()
+            self.ui.label.setText("Purchase details saved successfully!")
+            self.ui.okay_button.clicked.connect(self.back_screen)
+
+        else:
+            self.window = QtWidgets.QMainWindow()
+            self.ui = message_display.Ui_Dialog()
+            self.ui.setupUi(self.window)
+            self.window.show()
+            self.ui.label.setText("!!Error while saving details in db.")
+            self.ui.okay_button.clicked.connect(self.back_screen)
+
+    def reset_purchase_form(self):
+        self.ui.supplier_name.setPlainText("")
+        self.ui.vendor_name.setPlainText("")
+        self.ui.product_name.setPlainText("")
+        self.ui.quantity_spinBox.setValue(0)
+        self.ui.price_per_unit_spinBox.setValue(0)
+        self.ui.total_price.setPlainText("")"""
+
+    def open_window_sales(self):
+        self.window = QtWidgets.QMainWindow()
+        self.ui = sales_new.Ui_MainWindow()
+        self.ui.setupUi(self.window)
+
+        self.window.show()
+
+
+
+
+
+
+        """item_text = ['sample 1', 'sample 2']
         self.ui.comboBox.addItems(item_text)
         self.ui.back_button.clicked.connect(self.back_screen)
-        self.ui.reset_button.clicked.connect(self.reset_sales_form)
+        self.ui.reset_button.clicked.connect(self.reset_sales_form)"""
+        self.ui.pushButton.clicked.connect(self.add_new_data)
+
+    def add_new_data(self):
+        print("Button clicked")
+        try:
+            self.ui.pushButton_3 = QtWidgets.QPushButton(self.ui.centralwidget)
+            self.ui.pushButton_3.setGeometry(QtCore.QRect(100, 50, 75, 23))
+            self.ui.pushButton_3.setObjectName("pushButton_3")
+            self.ui.pushButton_3.setText("button_3")
+            self.update()
+            print(self.ui.pushButton_3.text())
+            self.ui.pushButton_3.show()
+        except Exception as e:
+            print(e)
+
 
     def reset_sales_form(self):
         self.ui.comboBox.setCurrentIndex(0)
@@ -112,9 +206,8 @@ class Main_UI(QtWidgets.QMainWindow, main.Ui_MainWindow):
         print("Total price:", total_price)
         print("Date:", date)
         print("Data submitted by:", data_submitted_by)
-        db_insert.register_new_item(product_name, client_name, quantity, price_per_unit, total_price, date,
+        db_insert.register_purchase(product_name, client_name, quantity, price_per_unit, total_price, date,
                                     data_submitted_by)
-        self.window.close()
 
     def back_screen(self):
         self.window.close()
@@ -125,9 +218,6 @@ class Main_UI(QtWidgets.QMainWindow, main.Ui_MainWindow):
         self.ui.quantity.setPlainText(" ")
         self.ui.per_unit_price.setPlainText(" ")
         self.ui.total_price.setPlainText(" ")
-
-    def text_changed(self):
-        print("Text change detected")
 
 
 def main():

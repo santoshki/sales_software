@@ -2,21 +2,23 @@ import sqlite3 as sql
 from parser import config_parser
 
 
-def register_new_item(product_name, client_name, quantity, price_per_unit, total_price,
+def register_purchase(supplier_name, product_name, vendor_name, quantity, price_per_unit, total_price,
                       date, data_submitted_by):
     try:
         connection = sql.connect(config_parser.db_hostname)
         connection_cursor = connection.cursor()
-        connection_cursor.execute("INSERT INTO ss_records (product_name, client_name, quantity, "
+        connection_cursor.execute("INSERT INTO purchase_stock (supplier_name, product_name, vendor_name, quantity, "
                                   "price_per_unit, total_price, date, data_submitted_by) "
-                                  "VALUES (?,?,?,?,?,?,?)",
-                                  (product_name, client_name, quantity, price_per_unit,
-                                   total_price, date, data_submitted_by))
+                                  "VALUES (?,?,?,?,?,?,?,?)",
+                                  (supplier_name, product_name, vendor_name, quantity, price_per_unit, total_price,
+                                   date, data_submitted_by))
         connection.commit()
         connection.close()
-        print("New item registered successfully.")
+        print("New Purchase registered successfully.")
+        return 1
     except Exception as e:
         print("Exception occurred while registering new item in the database:", e)
+        return 0
 
 
 def insert_values(gst_percentage_value):

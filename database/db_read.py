@@ -12,8 +12,8 @@ def read_data(table_name):
         print(data)
         return data
     except Exception as e:
-        print("Exception occurred while trying to read existing issues from the db", e)
+        print("Exception occurred while trying to read data from the db:", e)
 
 
 if __name__ == '__main__':
-    read_data(config_parser.db_records)
+    read_data(config_parser.db_purchase_stock)

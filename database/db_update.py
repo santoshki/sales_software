@@ -28,4 +28,4 @@ def db_update_table(gst_percentage_value):
 
 if __name__ == '__main__':
    #db_update_table("19")
-   db_delete_table(config_parser.db_settings)
+   db_delete_table("ss_records")
