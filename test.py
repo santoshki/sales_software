@@ -1,35 +1,49 @@
+from PyQt5 import QtWidgets
 import sys
-from PyQt5 import QtCore, QtWidgets
-from PyQt5.QtWidgets import QMainWindow, QLabel, QGridLayout, QWidget
-from PyQt5.QtWidgets import QPushButton
-from PyQt5.QtCore import QSize
 
 
-class MainWindow(QMainWindow):
+class MyScrollWidget(QtWidgets.QWidget):
+
     def __init__(self):
-        QMainWindow.__init__(self)
-        self.i = 0
-        self.y = 0
-        self.btn = []
-        self.setMinimumSize(QSize(300, 200))
+        super(MyScrollWidget, self).__init__()
+        lay = QtWidgets.QVBoxLayout(self)
 
-        pybutton = QPushButton('Create a button', self)
-        pybutton.clicked.connect(self.clickMethod)
-        pybutton.resize(100, 100)
-        pybutton.move(100, 100)
+        scrollArea = QtWidgets.QScrollArea()
+        lay.addWidget(scrollArea)
+        top_widget = QtWidgets.QWidget()
+        top_layout = QtWidgets.QVBoxLayout()
 
-    def clickMethod(self):
-        print('Clicked')
-        self.btn.append(QPushButton('New Button', self))
+        i = 1
 
-        self.btn[-1].move(self.i, self.y)
-        self.i = self.i + 50
-        self.y = self.y + 50
-        self.btn[-1].show()
+        group_box = QtWidgets.QGroupBox()
+
+        group_box.setTitle('GroupBox For Item {0}'.format(i))
+
+        layout = QtWidgets.QHBoxLayout(group_box)
+
+        label = QtWidgets.QLabel()
+        label.setText('Label For Item {0}'.format(i))
+        layout.addWidget(label)
+
+        push_button = QtWidgets.QPushButton(group_box)
+        push_button.setText('Run Button')
+        push_button.setFixedSize(100, 32)
+        push_button.clicked.connect(self.button_clicked)
+        layout.addWidget(push_button)
+
+        top_layout.addWidget(group_box)
+
+        top_widget.setLayout(top_layout)
+        scrollArea.setWidget(top_widget)
+        self.resize(200, 500)
+
+    def button_clicked(self):
+        print("button clicked")
+        
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
-    mainWin = MainWindow()
-    mainWin.show()
+    widget = MyScrollWidget()
+    widget.show()
     sys.exit(app.exec_())

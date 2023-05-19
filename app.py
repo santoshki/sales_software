@@ -7,8 +7,11 @@ import main
 import new_items
 import about
 import settings
+import test
 from database import db_insert, db_update
 import datetime
+
+from test import MyScrollWidget
 from usecase import db_proc
 from PyQt5.QtCore import QSize
 import purchases
@@ -16,13 +19,10 @@ import message_display
 import getpass
 import sales_new
 
-
-def new_row(i):
-    print(i)
+buttons_add = []
 
 
 class Main_UI(QtWidgets.QMainWindow, main.Ui_MainWindow):
-    j = 0
     """def open_window_purchases(self):
         self.window = QtWidgets.QMainWindow()
         self.ui = purchases.Ui_MainWindow()
@@ -96,145 +96,133 @@ class Main_UI(QtWidgets.QMainWindow, main.Ui_MainWindow):
         self.ui = sales_new.Ui_MainWindow()
         self.ui.setupUi(self.window)
         self.j = 0
+        self.item_no_value = 2
         self.window.show()
-
-
-
-
-
-
+        myQListWidget = QListWidget()
         """item_text = ['sample 1', 'sample 2']
         self.ui.comboBox.addItems(item_text)
         self.ui.back_button.clicked.connect(self.back_screen)
         self.ui.reset_button.clicked.connect(self.reset_sales_form)"""
-        self.ui.add_new_row_button.clicked.connect(self.add_new_data)
+        self.ui.plainTextEdit_4.setPlainText("1")
+        self.ui.item_no_textfield = QtWidgets.QPlainTextEdit(self.ui.centralwidget)
+        self.ui.item_no_textfield.setGeometry(QtCore.QRect(10, (self.j * 10) + 275, 40, 50))
+        # self.ui.add_new_row_button.clicked.connect(self.add_new_data)
+        ct = MyScrollWidget()
+        self.ui.add_new_row_button.clicked.connect(lambda text: self.add_new_data("add"))
+        self.ui.spinBox.textChanged.connect(self.get_total_inr)
+        self.ui.spinBox_2.textChanged.connect(self.get_total_inr)
 
-    def add_new_data(self):
-        print("New Row to be added")
-        row_num = self.j
+    def get_total_inr(self):
+        units_sold_qty = self.ui.spinBox.value()
+        price_per_unit_qty = self.ui.spinBox_2.value()
+        self.ui.plainTextEdit_6.setPlainText(str(units_sold_qty * price_per_unit_qty))
+
+    def add_new_data(self, text):
         try:
-            """for i in range(0, 6):
-                self.ui.textfield = QtWidgets.QPlainTextEdit(self.ui.centralwidget)
-                self.ui.textfield.setGeometry(QtCore.QRect(i*20 + 300, 300, 75, 23))
-            #self.ui.plainTextEdit_2 = QtWidgets.QPlainTextEdit(self.ui.centralwidget)
-            #self.ui.plainTextEdit_2.setGeometry(QtCore.QRect(100, 200, 75, 23))
-                self.update()
-                self.ui.textfield.show()"""
-            keys = dict()
-            buttons_add = dict()
-            buttons_remove = dict()
-            item_no_textfield = QtWidgets.QPlainTextEdit(self.ui.centralwidget)
-            product_name_dropdown = QtWidgets.QComboBox(self.ui.centralwidget)
-            vendor_name_textfield = QtWidgets.QPlainTextEdit(self.ui.centralwidget)
-            units_sold_spinner = QtWidgets.QSpinBox(self.ui.centralwidget)
-            price_per_unit_spinner = QtWidgets.QSpinBox(self.ui.centralwidget)
-            total_amount_textfield = QtWidgets.QPlainTextEdit(self.ui.centralwidget)
-            button_add = QtWidgets.QPushButton(self.ui.centralwidget)
-            button_remove = QtWidgets.QPushButton(self.ui.centralwidget)
+            if text == "add":
+                print("New Row to be added")
 
-            item_no_textfield.setGeometry(QtCore.QRect(10, (self.j * 10) + 275, 40, 50))
-            item_no_textfield.setObjectName("item_no_" + str(self.j))
-            product_name_dropdown.setGeometry(QtCore.QRect(80, (self.j * 10) + 275, 140, 50))
-            product_name_dropdown.setObjectName("product_name_dropdown_" + str(self.j))
-            vendor_name_textfield.setGeometry(QtCore.QRect(250, (self.j * 10) + 275, 120, 50))
-            vendor_name_textfield.setObjectName("vendor_name_" + str(self.j))
-            units_sold_spinner.setGeometry(QtCore.QRect(400, (self.j * 10) + 275, 80, 50))
-            units_sold_spinner.setObjectName("units_sold_" + str(self.j))
-            price_per_unit_spinner.setGeometry(QtCore.QRect(510, (self.j * 10) + 275, 80, 50))
-            price_per_unit_spinner.setObjectName("price_per_unit_" + str(self.j))
-            total_amount_textfield.setGeometry(QtCore.QRect(620, (self.j * 10) + 275, 100, 50))
-            total_amount_textfield.setObjectName("total_amount_" + str(self.j))
-            button_add.setGeometry(QtCore.QRect(750, (self.j * 10) + 275, 60, 50))
-            button_add.setObjectName("button_add_" + str(self.j))
-            button_add.setText("+")
-            button_add.clicked.connect(self.add_new_data)
-            button_remove.setGeometry(QtCore.QRect(830, (self.j * 10) + 275, 60, 50))
-            button_remove.setObjectName("button_remove_" + str(self.j))
-            button_remove.setText("-")
+                self.ui.item_no_textfield = QtWidgets.QPlainTextEdit(self.ui.centralwidget)
+                self.ui.product_name_dropdown = QtWidgets.QComboBox(self.ui.centralwidget)
+                self.ui.vendor_name_textfield = QtWidgets.QPlainTextEdit(self.ui.centralwidget)
+                self.ui.units_sold_spinner = QtWidgets.QSpinBox(self.ui.centralwidget)
+                self.ui.price_per_unit_spinner = QtWidgets.QSpinBox(self.ui.centralwidget)
+                self.ui.total_amount_textfield = QtWidgets.QPlainTextEdit(self.ui.centralwidget)
+                self.ui.button_add = QtWidgets.QPushButton(self.ui.centralwidget)
+                self.ui.button_remove = QtWidgets.QPushButton(self.ui.centralwidget)
+                self.ui.total_amount_textfield = QtWidgets.QPlainTextEdit(self.ui.centralwidget)
 
-            item_no_textfield.show()
-            product_name_dropdown.show()
-            vendor_name_textfield.show()
-            units_sold_spinner.show()
-            price_per_unit_spinner.show()
-            total_amount_textfield.show()
-            button_add.show()
-            button_remove.show()
-            self.ui.add_new_row_button.setEnabled(False)
-            self.j = self.j + 8
-            print("button clicked:",button_add.objectName())
-            if button_add.objectName() == "button_add_" + str(row_num):
-                button_add.setEnabled(False)
-            """for i in range(1, 7):
-                keys[i] = QtWidgets.QPlainTextEdit(self.ui.centralwidget)
-                keys[i].setGeometry(QtCore.QRect((i * 10) + 100, (self.j * 10) + 275, 200, 50))
-                keys[i].textChanged.connect(lambda: keys[i].getPaintContext())
+                self.ui.item_no_textfield.setGeometry(QtCore.QRect(10, (self.j * 10) + 275, 40, 50))
+                self.ui.item_no_textfield.setObjectName("item_no_" + str(self.j))
+                self.ui.item_no_textfield.setPlainText(str(self.item_no_value))
+                self.item_no_value = self.item_no_value + 1
 
-                keys[i].show()
+                self.ui.product_name_dropdown.setGeometry(QtCore.QRect(80, (self.j * 10) + 275, 140, 50))
+                self.ui.product_name_dropdown.setObjectName("product_name_dropdown_" + str(self.j))
 
-            buttons_add = QtWidgets.QPushButton(self.ui.centralwidget)
-            buttons_add.setGeometry(QtCore.QRect((i * 10) + 450, (self.j * 10) + 275, 100, 50))
-            buttons_add.setObjectName("add_new_row_" + str(i))
-            buttons_add.setText("+")
-            buttons_remove = QtWidgets.QPushButton(self.ui.centralwidget)
-            buttons_remove.setGeometry(QtCore.QRect((i * 10) + 600, (self.j * 10) + 275, 100, 50))
-            buttons_remove.setObjectName("remove_this_row_" + str(i))
-            buttons_remove.setText("-")
-            buttons_add.show()
-            buttons_remove.show()
-            
-            #self.ui.plainTextEdit_2.show()
-            self.ui.pushButton_3 = QtWidgets.QPushButton(self.ui.centralwidget)
-            self.ui.pushButton_3.setGeometry(QtCore.QRect(100, 100, 75, 23))
-            self.ui.pushButton_3.setObjectName("pushButton_3")
-            self.ui.pushButton_3.setText("button_3")
-            self.update()
-            #print(self.ui.pushButton_3.text())
-            self.ui.pushButton_3.show()"""
+                self.ui.vendor_name_textfield.setGeometry(QtCore.QRect(250, (self.j * 10) + 275, 120, 50))
+                self.ui.vendor_name_textfield.setObjectName("vendor_name_" + str(self.j))
 
+                self.ui.units_sold_spinner.setGeometry(QtCore.QRect(400, (self.j * 10) + 275, 80, 50))
+                self.ui.units_sold_spinner.setObjectName("units_sold_" + str(self.j))
+
+                units_sold_qty = self.ui.units_sold_spinner.value()
+
+                self.ui.price_per_unit_spinner.setGeometry(QtCore.QRect(510, (self.j * 10) + 275, 80, 50))
+                self.ui.price_per_unit_spinner.setObjectName("price_per_unit_" + str(self.j))
+                price_per_unit = self.ui.price_per_unit_spinner.value()
+                total_ppu = 0
+                total_usp = 0
+                self.ui.units_sold_spinner.textChanged.connect(lambda data3: self.add_new_data("spinner"))
+                self.ui.price_per_unit_spinner.textChanged.connect(lambda data3: self.add_new_data("spinner"))
+                #total_usp = self.ui.units_sold_spinner.textChanged.connect(
+                    #lambda text: self.get_total_inr2(self.ui.units_sold_spinner.value(),
+                                                     #self.ui.price_per_unit_spinner.value()))
+
+                #total_ppu = self.ui.price_per_unit_spinner.textChanged.connect(
+                    #lambda text: self.get_total_inr2(self.ui.units_sold_spinner.value(),
+                                                     #self.ui.price_per_unit_spinner.value()))
+
+                self.ui.total_amount_textfield.setGeometry(QtCore.QRect(620, (self.j * 10) + 275, 100, 50))
+                self.ui.total_amount_textfield.setObjectName("total_amount_" + str(self.j))
+                self.ui.total_amount_textfield.setPlainText(str(total_usp))
+
+                self.ui.button_add.setGeometry(QtCore.QRect(750, (self.j * 10) + 275, 60, 50))
+                self.ui.button_add.setObjectName("button_add_" + str(self.j))
+                self.ui.button_add.setText("+")
+                buttons_add.append(self.ui.button_add.objectName())
+                self.ui.button_add.clicked.connect(lambda data: self.add_new_data("add"))
+                self.ui.button_remove.setGeometry(QtCore.QRect(830, (self.j * 10) + 275, 60, 50))
+                self.ui.button_remove.setObjectName("button_remove_" + str(self.j))
+                self.ui.button_remove.setText("-")
+                # self.ui.button_remove.clicked.connect(lambda text: self.delete_row(self.ui.button_remove.objectName()))
+                # self.ui.button_remove.clicked.connect(self.delete_row)
+                self.ui.button_remove.clicked.connect(lambda data2: self.add_new_data("remove"))
+                self.ui.item_no_textfield.show()
+                self.ui.product_name_dropdown.show()
+                self.ui.vendor_name_textfield.show()
+                self.ui.units_sold_spinner.show()
+                self.ui.price_per_unit_spinner.show()
+                self.ui.total_amount_textfield.show()
+                self.ui.button_add.show()
+                self.ui.button_remove.show()
+                self.window.update()
+                self.ui.add_new_row_button.setEnabled(False)
+                self.j = self.j + 8
+                myQListWidget = QListWidget()
+                # myQListWidget.addItem(self.ui.item_no_textfield)
+                print("button clicked:", self.ui.button_add.objectName())
+
+                print("Buttons added:", buttons_add)
+                """for i in buttons_add:
+                    if i == "button_add_" + str(row_num-8):
+                        if self.ui.button_add.objectName() == i:
+                            self.ui.button_add.deleteLater()"""
+                """if self.ui.button_add.objectName() == "button_add_" + str(row_num):
+                    self.ui.button_add.setEnabled(False)"""
+            elif text == "remove":
+                print(self.ui.total_amount_textfield.getPaintContext())
+                self.ui.total_amount_textfield.deleteLater()
+
+            elif text == "spinner":
+                self.ui.total_amount_textfield.setPlainText(str(self.ui.units_sold_spinner.value()*self.ui.price_per_unit_spinner.value()))
         except Exception as e:
             print(e)
 
-    def new_row(self):
-        print("New Row to be added")
-        item_no_textfield = QtWidgets.QPlainTextEdit(self.ui.centralwidget)
-        product_name_dropdown = QtWidgets.QComboBox(self.ui.centralwidget)
-        vendor_name_textfield = QtWidgets.QPlainTextEdit(self.ui.centralwidget)
-        units_sold_spinner = QtWidgets.QSpinBox(self.ui.centralwidget)
-        price_per_unit_spinner = QtWidgets.QSpinBox(self.ui.centralwidget)
-        total_amount_textfield = QtWidgets.QPlainTextEdit(self.ui.centralwidget)
-        button_add = QtWidgets.QPushButton(self.ui.centralwidget)
-        button_remove = QtWidgets.QPushButton(self.ui.centralwidget)
+    def get_total_inr2(self, units_sold_qty, price_per_unit):
 
-        item_no_textfield.setGeometry(QtCore.QRect(10, (self.j * 10) + 275, 40, 50))
-        item_no_textfield.setObjectName("item_no_" + str(self.j))
-        product_name_dropdown.setGeometry(QtCore.QRect(80, (self.j * 10) + 275, 140, 50))
-        product_name_dropdown.setObjectName("product_name_dropdown_" + str(self.j))
-        vendor_name_textfield.setGeometry(QtCore.QRect(250, (self.j * 10) + 275, 120, 50))
-        vendor_name_textfield.setObjectName("vendor_name_" + str(self.j))
-        units_sold_spinner.setGeometry(QtCore.QRect(400, (self.j * 10) + 275, 80, 50))
-        units_sold_spinner.setObjectName("units_sold_" + str(self.j))
-        price_per_unit_spinner.setGeometry(QtCore.QRect(510, (self.j * 10) + 275, 80, 50))
-        price_per_unit_spinner.setObjectName("price_per_unit_" + str(self.j))
-        total_amount_textfield.setGeometry(QtCore.QRect(620, (self.j * 10) + 275, 100, 50))
-        total_amount_textfield.setObjectName("total_amount_" + str(self.j))
-        button_add.setGeometry(QtCore.QRect(750, (self.j * 10) + 275, 60, 50))
-        button_add.setObjectName("button_add_" + str(self.j))
-        button_add.setText("+")
-        button_add.clicked.connect(self.new_row)
-        button_remove.setGeometry(QtCore.QRect(830, (self.j * 10) + 275, 60, 50))
-        button_remove.setObjectName("button_remove_" + str(self.j))
-        button_remove.setText("-")
+        total_inr = units_sold_qty * price_per_unit
+        self.findChild(QPlainTextEdit)
 
-        item_no_textfield.show()
-        product_name_dropdown.show()
-        vendor_name_textfield.show()
-        units_sold_spinner.show()
-        price_per_unit_spinner.show()
-        total_amount_textfield.show()
-        button_add.show()
-        button_remove.show()
-        self.j = self.j + 8
+        print(total_inr)
+        return total_inr
+
+    def delete_row(self):
+        import main3
+        import wx
+        app = wx.App()
+        frame = main3.MyFrame()
+        app.MainLoop()
 
     def reset_sales_form(self):
         self.ui.comboBox.setCurrentIndex(0)
